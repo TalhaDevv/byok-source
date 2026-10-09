@@ -1,0 +1,48 @@
+{
+  "name": "cortex-desktop",
+  "version": "1.0.0",
+  "description": "Cortex masaüstü uygulaması",
+  "main": "main.js",
+  "private": false,
+  "author": "Cortex",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis --x64"
+  },
+  "build": {
+    "appId": "app.cortex.desktop",
+    "productName": "Cortex",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "engine.js",
+      "proto-utils.js",
+      "providers/cursor/**/*",
+      "renderer/**/*",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/cortex.ico",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "Cortex"
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.5.1",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "node-forge": "^1.4.0"
+  }
+}

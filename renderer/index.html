@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:" />
+  <meta name="theme-color" content="#08090c" />
+  <title>Cortex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="side" aria-label="Kenar çubuğu">
+      <div class="brand">
+        <img src="../assets/logo.png" alt="" width="26" height="26" />
+        <span>Cortex</span>
+      </div>
+      <nav class="nav" aria-label="Ana menü">
+        <button class="nav-item active" data-tab="home" type="button" title="Özet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+          <span class="nav-label">Özet</span>
+        </button>
+        <button class="nav-item" data-tab="ag" type="button" title="AntiGravity">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c2-9 5-16 8-16s6 7 8 16"/><path d="M8 20c1.2-4 2.5-6 4-6s2.8 2 4 6"/></svg>
+          <span class="nav-label">AntiGravity</span>
+        </button>
+        <button class="nav-item" data-tab="cursor" type="button" title="Cursor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l14 7-6.2 1.6L11 19z"/><path d="M13 13l5 5"/></svg>
+          <span class="nav-label">Cursor</span>
+        </button>
+        <button class="nav-item" data-tab="models" type="button" title="Modeller">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+          <span class="nav-label">Modeller</span>
+        </button>
+        <button class="nav-item" data-tab="traffic" type="button" title="İstekler">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h13"/></svg>
+          <span class="nav-label">İstekler</span>
+        </button>
+        <button class="nav-item" data-tab="settings" type="button" title="Ayarlar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+          <span class="nav-label">Ayarlar</span>
+        </button>
+      </nav>
+      <button class="side-foot" id="discordLink" type="button" title="Discord" aria-label="Discord topluluğunu aç, discord.gg/cortexai">discord.gg/cortexai</button>
+    </aside>
+
+    <div class="main">
+      <header class="titlebar">
+        <div class="crumb">Cortex <span class="dimc">/</span> <b id="title">Özet</b></div>
+        <div class="win">
+          <button id="winMin" type="button" aria-label="Küçült"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><path d="M2 6h8"/></svg></button>
+          <button id="winMax" type="button" aria-label="Büyüt"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><rect x="2.5" y="2.5" width="7" height="7" rx="1"/></svg></button>
+          <button id="winClose" type="button" aria-label="Kapat"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><path d="m3 3 6 6M9 3l-6 6"/></svg></button>
+        </div>
+      </header>
+
+      <main class="view" id="view">
+        <section class="page on" id="view-home" aria-label="Özet">
+          <div class="hero">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <img class="hero-logo" src="../assets/logo.png" alt="Cortex logosu" width="76" height="76" />
+            <div class="eyebrow">Cursor · AntiGravity · Devin (Windsurf)</div>
+            <h1>Tüm AI araçların için <span class="grad">tek anahtar.</span></h1>
+            <p>Cortex, kendi API anahtarını tek bir yerden tüm editörlerine bağlayan BYOK aracı.</p>
+            <div class="hero-cta">
+              <button class="btn btn-primary btn-lg" id="goAg" type="button">Başla</button>
+              <button class="btn btn-lg" data-go="settings" type="button">API anahtarı ekle</button>
+            </div>
+            <nav class="quick" aria-label="Hızlı erişim">
+              <button data-go="models" type="button">
+                <div class="t">Modeller <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+                <div class="d">Anahtarınla açılan katalog</div>
+              </button>
+              <button data-go="ag" type="button">
+                <div class="t">AntiGravity <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+                <div class="d">Köprüyü kur ve yönet</div>
+              </button>
+              <button data-go="settings" type="button">
+                <div class="t">Ayarlar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+                <div class="d">Tek anahtar, iki kaynak</div>
+              </button>
+            </nav>
+          </div>
+        </section>
+
+        <section class="page ambient" id="view-ag" aria-label="AntiGravity">
+          <div class="wrap">
+            <div class="ph">
+              <div>
+                <h1>AntiGravity</h1>
+                <p>Kurulum bu gökyüzünde biter.</p>
+              </div>
+              <span class="pill" id="ag-pill"><span class="dot" id="ag-pill-dot"></span><span id="powerLabel">Kapalı</span></span>
+            </div>
+
+            <div class="status-card">
+              <div class="orb" id="ag-orb" aria-hidden="true"></div>
+              <div class="grow">
+                <div class="t" id="ag-title">Köprü kapalı</div>
+                <div class="d" id="liveLine">Motor, sertifika ve yönlendirme kapalı.</div>
+                <div class="progress" aria-hidden="true"><i id="ag-bar" style="width:0%"></i></div>
+              </div>
+              <button class="switch-btn" id="power" type="button" role="switch" aria-checked="false" aria-label="Köprüyü aç veya kapat"></button>
+            </div>
+
+            <div id="ag-notices">
+              <p class="notice warn" id="offWarn" hidden>Kapalı. Bu köprüyle AntiGravity kullanılamaz.</p>
+              <p class="notice err" id="errWarn" hidden></p>
+              <p class="notice warn" id="driftWarn" hidden>Yama düştü. AntiGravity güncellenmiş, köprüyü yeniden aç.</p>
+              <p class="hint" id="certLine" hidden></p>
+            </div>
+
+            <div id="agSetup">
+              <div class="label">Kurulum</div>
+              <div class="group">
+                <ol class="steps" id="steps"></ol>
+              </div>
+              <div class="dock-foot">
+                <p class="hint" id="setupHint"></p>
+                <button class="btn btn-primary" id="finishSetup" type="button">Kurulumu tamamla</button>
+              </div>
+            </div>
+
+            <div id="agDone" hidden>
+              <div class="label">Bağlantı</div>
+              <div class="group kv">
+                <div class="row">
+                  <div class="grow muted">Kullanılacak model</div>
+                  <select class="input" id="activePick" aria-label="Kullanılacak model"></select>
+                </div>
+                <div class="row"><div class="grow muted">Aktif model</div><span class="mono" id="sumModel">—</span></div>
+                <div class="row"><div class="grow muted">Grok</div><span class="mono" id="sumGrok">https://grok.claude.gg</span></div>
+                <div class="row"><div class="grow muted">Claude</div><span class="mono" id="sumClaude">https://claude.gg</span></div>
+              </div>
+            </div>
+
+            <div class="label">Durum</div>
+            <div class="group">
+              <ol class="steps" id="liveSteps"></ol>
+            </div>
+          </div>
+        </section>
+
+        <section class="page ambient" id="view-cursor" aria-label="Cursor">
+          <div class="wrap">
+            <div class="ph">
+              <div>
+                <h1>Cursor</h1>
+                <p>Kendi vekili ve kendi sertifikası. AntiGravity’den bağımsız açılır.</p>
+              </div>
+              <span class="pill" id="cursor-pill"><span class="dot" id="cursor-pill-dot"></span><span id="cursorPowerLabel">Kapalı</span></span>
+            </div>
+            <div class="status-card">
+              <div class="orb" id="cursor-orb" aria-hidden="true"></div>
+              <div class="grow">
+                <div class="t" id="cursor-title">Köprü kapalı</div>
+                <div class="d" id="cursorLine">Cursor ayarları normal. Vekil dinlemiyor.</div>
+              </div>
+              <button class="switch-btn" id="cursorPower" type="button" role="switch" aria-checked="false" aria-label="Cursor köprüsünü aç veya kapat"></button>
+            </div>
+            <div id="cursor-notices">
+              <p class="notice warn" id="cursorOff" hidden>Kapalı. Cursor bu köprüyü kullanmıyor.</p>
+              <p class="notice err" id="cursorErr" hidden></p>
+              <p class="hint" id="cursorMeta" hidden></p>
+            </div>
+            <div class="label">Bağlantı</div>
+            <div class="group kv">
+              <div class="row"><div class="grow muted">Vekil</div><span class="mono" id="cursorProxy">—</span></div>
+              <div class="row"><div class="grow muted">Sertifika</div><span class="mono" id="cursorCa">—</span></div>
+              <div class="row"><div class="grow muted">Cursor</div><span class="mono" id="cursorApp">—</span></div>
+              <div class="row"><div class="grow muted">Katalog</div><span class="mono" id="cursorModelCount">0 model</span></div>
+            </div>
+
+            <div class="label">Cursor modelleri</div>
+            <p class="hint" style="margin:0 0 10px">Buraya eklediğin modeller Cursor seçicisine gider. Toplu eklemede her satır: görünen ad, model id, base URL, anahtar (virgül veya tab).</p>
+            <div class="group" id="cursorModelList"></div>
+
+            <div class="label">Model ekle</div>
+            <div class="group">
+              <div class="row tall">
+                <div class="grow">
+                  <div class="t">Görünen ad</div>
+                  <div class="d">Cursor listesinde yazacak isim</div>
+                </div>
+                <input class="input" id="cmName" placeholder="Grok 4…" autocomplete="off" />
+              </div>
+              <div class="row tall">
+                <div class="grow">
+                  <div class="t">Model id</div>
+                  <div class="d">Sağlayıcının gerçek model adı</div>
+                </div>
+                <input class="input" id="cmId" placeholder="grok-4…" autocomplete="off" />
+              </div>
+              <div class="row tall">
+                <div class="grow">
+                  <div class="t">Base URL</div>
+                  <div class="d">OpenAI uyumlu kök</div>
+                </div>
+                <input class="input" id="cmBase" placeholder="https://grok.claude.gg" autocomplete="off" />
+              </div>
+              <div class="row tall">
+                <div class="grow">
+                  <div class="t">API anahtarı</div>
+                  <div class="d">Bu modele özel; boşsa Ayarlar’daki anahtar</div>
+                </div>
+                <input class="input" id="cmKey" type="password" placeholder="sk-…" autocomplete="off" />
+              </div>
+              <div class="row tall">
+                <div class="grow">
+                  <div class="t">Uç nokta</div>
+                </div>
+                <select class="input" id="cmEp">
+                  <option value="/v1/chat/completions">/v1/chat/completions</option>
+                  <option value="/v1/responses">/v1/responses</option>
+                </select>
+              </div>
+              <div class="group-foot">
+                <button class="btn btn-primary" id="cmAdd" type="button">Ekle</button>
+              </div>
+            </div>
+
+            <div class="label">Toplu ekle</div>
+            <div class="group">
+              <textarea class="input" id="cmBulk" rows="6" placeholder="Grok 4, grok-4, https://grok.claude.gg, sk-xxx&#10;Claude, claude-sonnet, https://claude.gg, sk-yyy"></textarea>
+              <div class="group-foot">
+                <button class="btn" id="cmImportEnabled" type="button">Açık Cortex modellerini aktar</button>
+                <button class="btn btn-primary" id="cmBulkAdd" type="button">Toplu ekle</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page ambient" id="view-models" aria-label="Modeller">
+          <div class="wrap">
+            <div class="ph">
+              <div>
+                <h1>Modeller</h1>
+                <p>API anahtarınla erişebildiğin modeller. Kullanmak istediklerini aç.</p>
+              </div>
+              <div class="count" id="count"></div>
+            </div>
+            <div class="sticky">
+              <div class="toolbar">
+                <div class="search">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                  <input class="input" id="search" type="search" placeholder="Model ara" aria-label="Model ara" autocomplete="off" />
+                </div>
+                <button class="btn" id="reload" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Yenile
+                </button>
+              </div>
+              <div class="filters">
+                <div class="seg" id="familyChips" role="tablist" aria-label="Sağlayıcı"></div>
+                <div class="seg" id="tierChips" role="tablist" aria-label="Seviye"></div>
+              </div>
+            </div>
+            <div class="model-stage" id="modelStage">
+              <div class="group" id="modelList"></div>
+              <div class="lock" id="lock" hidden>
+                <p>Modelleri görüntülemek için Ayarlar’dan API anahtarı girin</p>
+                <button class="btn btn-primary" id="goSettings" type="button">Ayarlar’a git</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page ambient" id="view-traffic" aria-label="İstekler">
+          <div class="wrap wide">
+            <div class="ph">
+              <div>
+                <h1>İstekler</h1>
+                <p id="pinLine">Editörlerinden geçen son istekler.</p>
+              </div>
+              <button class="btn" id="reloadTraffic" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Yenile
+              </button>
+            </div>
+            <div class="stats">
+              <div><div class="k">Üretim</div><div class="n" id="trafficCount">—</div></div>
+              <div><div class="k">Akış</div><div class="n" id="statStream">—</div></div>
+              <div><div class="k">Aktarılan</div><div class="n" id="statSize">—</div></div>
+              <div class="hide-sm"><div class="k">Hata</div><div class="n" id="statFail">—</div></div>
+            </div>
+            <p class="notice err" id="trafficError" hidden></p>
+            <div class="group scroll-x">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th><th>Zaman</th><th>Model</th><th class="hide-sm">Tür</th><th class="hide-sm">Yol</th><th class="num">Boyut</th>
+                  </tr>
+                </thead>
+                <tbody id="trafficList"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="page ambient" id="view-settings" aria-label="Ayarlar">
+          <div class="wrap narrow">
+            <div class="ph">
+              <div>
+                <h1>Ayarlar</h1>
+                <p>Anahtarın bu cihazda, şifreli kullanıcı verisinde saklanır.</p>
+              </div>
+            </div>
+
+            <form id="settingsForm">
+              <div class="label first">API</div>
+              <div class="group">
+                <div class="row tall">
+                  <div class="grow">
+                    <div class="t">API anahtarı</div>
+                    <div class="d">grok.claude.gg ve claude.gg için aynı anahtar.</div>
+                    <div class="hint" id="keyStatus"></div>
+                  </div>
+                  <div class="field">
+                    <input class="input mono" id="apiKey" type="password" autocomplete="off" placeholder="sk-…" aria-label="API anahtarı" />
+                    <button class="btn" id="toggleKey" type="button" aria-pressed="false">Göster</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="grow"><div class="t">Grok sunucusu</div></div>
+                  <div class="field"><input class="input mono" id="grokBase" type="url" value="https://grok.claude.gg" aria-label="Grok sunucusu" /></div>
+                </div>
+                <div class="row">
+                  <div class="grow"><div class="t">Claude sunucusu</div></div>
+                  <div class="field"><input class="input mono" id="claudeBase" type="url" value="https://claude.gg" aria-label="Claude sunucusu" /></div>
+                </div>
+                <div class="group-foot">
+                  <button class="btn btn-danger" id="clearKey" type="button">Anahtarı sil</button>
+                  <button class="btn btn-primary" type="submit">Kaydet</button>
+                </div>
+              </div>
+            </form>
+
+            <div class="label">Genel</div>
+            <div class="group">
+              <div class="row">
+                <div class="grow">
+                  <div class="t">Windows ile başlat</div>
+                  <div class="d">Oturum açıldığında Cortex arka planda çalışır.</div>
+                </div>
+                <input type="checkbox" class="switch" id="openAtLogin" role="switch" aria-label="Windows ile başlat" />
+              </div>
+            </div>
+
+            <div class="label">Bakım</div>
+            <div class="group">
+              <div class="row">
+                <div class="grow">
+                  <div class="t">Tanı dosyası</div>
+                  <div class="d">Sorun bildirmek için. Anahtar maskelenir.</div>
+                </div>
+                <button class="btn" id="exportDiag" type="button">Oluştur</button>
+              </div>
+              <div class="row">
+                <div class="grow">
+                  <div class="t">Tamamen kaldır</div>
+                  <div class="d">Yönlendirme, sertifika, yama ve motor kayıtları silinir. Yönetici onayı ister.</div>
+                </div>
+                <button class="btn btn-danger" id="uninstallAll" type="button">Kaldır</button>
+              </div>
+            </div>
+            <p class="hint" id="saveMsg"></p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
