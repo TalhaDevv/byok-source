@@ -23,7 +23,13 @@
       "providers/cursor/**/*",
       "renderer/**/*",
       "assets/**/*"
-    ],
+ ],
+ "extraResources": [
+ {
+ "from": "vendor/engine/engine.exe",
+ "to": "vendor/engine/engine.exe"
+ }
+ ],
     "win": {
       "target": [
         "nsis"

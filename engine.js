@@ -39,13 +39,40 @@ const REPLACEMENTS = [
 ];
 
 function engineDir() {
-  return path.join(
-    os.homedir(),
-    ".antigravity",
-    "extensions",
-    "yeqing.vertex-proxy-engine-1.2.0-universal",
-    "engine"
-  );
+ return path.join(
+ os.homedir(),
+ ".antigravity",
+ "extensions",
+ "yeqing.vertex-proxy-engine-1.2.0-universal",
+ "engine"
+ );
+}
+
+function bundledEngine() {
+ const name = "engine.exe";
+ const candidates = [
+ path.join(__dirname, "vendor", "engine", name),
+ path.join(process.resourcesPath || "", "vendor", "engine", name),
+ ];
+ return candidates.find((file) => fs.existsSync(file)) || candidates[0];
+}
+
+function ensureBundledEngine() {
+ const src = bundledEngine();
+ if (!fs.existsSync(src)) {
+ throw new Error("Paket içindeki engine.exe yok: " + src);
+ }
+ const dir = engineDir();
+ const dest = path.join(dir, "engine.exe");
+ fs.mkdirSync(dir, { recursive: true });
+ let copy = !fs.existsSync(dest);
+ if (!copy) {
+ const a = fs.statSync(src);
+ const b = fs.statSync(dest);
+ copy = a.size !== b.size;
+ }
+ if (copy) fs.copyFileSync(src, dest);
+ return dest;
 }
 
 function languageServer() {
