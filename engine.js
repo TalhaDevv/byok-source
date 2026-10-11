@@ -235,7 +235,8 @@ function stepsOf(partial) {
 }
 
 async function status() {
-  const dir = engineDir();
+ try { ensureBundledEngine(); } catch {}
+ const dir = engineDir();
   const running = await engineAlive();
   const cert = certInfo();
   const bin = binaryStamp();
@@ -567,9 +568,9 @@ function onCrash(fn) {
 }
 
 async function startEngine(apiKey, baseUrl, model) {
-  const dir = engineDir();
-  const exe = path.join(dir, "engine.exe");
-  if (!fs.existsSync(exe)) throw new Error("engine.exe yok: " + exe);
+ const exe = ensureBundledEngine();
+ const dir = engineDir();
+ if (!fs.existsSync(exe)) throw new Error("engine.exe yok: " + exe);
   await ensureSingleEngine();
   writeEngineConfig(apiKey, baseUrl, model);
   rotateLog();
